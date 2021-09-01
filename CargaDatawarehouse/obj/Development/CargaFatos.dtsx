@@ -1,0 +1,1739 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="8/31/2021 9:24:31 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="DESKTOP-KKL6VF3"
+  DTS:CreatorName="DESKTOP-KKL6VF3\rsnat"
+  DTS:DTSID="{72F8B68A-891B-4042-A836-77B27413617D}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.170"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Package2"
+  DTS:PackageType="5"
+  DTS:VersionBuild="2"
+  DTS:VersionGUID="{D044D22B-276E-4C74-966C-1036E8265F23}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Conexão Fontes DB]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{FD13F1DD-F864-4405-A19A-208FCB4D0BF2}"
+      DTS:ObjectName="Conexão Fontes DB">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=DESKTOP-KKL6VF3;Initial Catalog=FONTES_DB;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Carga Fato 001"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{64C77BBE-7A45-4880-BD79-F2ECF8C364A3}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Carga Fato 001"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Carga Fato 001\Carga Fato 001"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="Carga Fato 001"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT * FROM TAB_FATO001
+WHERE YEAR(DATA_FATO) &gt;= '2014'
+AND MONTH(DATA_FATO) &gt;= '1'
+AND YEAR(DATA_FATO) &lt;= '2014'
+AND MONTH(DATA_FATO) &lt;= '1'</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Carga Fato 001\Carga Fato 001.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Conexão Fontes DB]"
+                  connectionManagerRefId="Package.ConnectionManagers[Conexão Fontes DB]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Carga Fato 001\Carga Fato 001.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Carga Fato 001\Carga Fato 001.Outputs[OLE DB Source Output].Columns[DATA_FATO]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Carga Fato 001\Carga Fato 001.Outputs[OLE DB Source Output].ExternalColumns[DATA_FATO]"
+                      lineageId="Package\Carga Fato 001\Carga Fato 001.Outputs[OLE DB Source Output].Columns[DATA_FATO]"
+                      name="DATA_FATO"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Carga Fato 001\Carga Fato 001.Outputs[OLE DB Source Output].Columns[COD_DIA]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Carga Fato 001\Carga Fato 001.Outputs[OLE DB Source Output].ExternalColumns[COD_DIA]"
+                      length="50"
+                      lineageId="Package\Carga Fato 001\Carga Fato 001.Outputs[OLE DB Source Output].Columns[COD_DIA]"
+                      name="COD_DIA"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Carga Fato 001\Carga Fato 001.Outputs[OLE DB Source Output].Columns[COD_CLIENTE]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Carga Fato 001\Carga Fato 001.Outputs[OLE DB Source Output].ExternalColumns[COD_CLIENTE]"
+                      length="50"
+                      lineageId="Package\Carga Fato 001\Carga Fato 001.Outputs[OLE DB Source Output].Columns[COD_CLIENTE]"
+                      name="COD_CLIENTE"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Carga Fato 001\Carga Fato 001.Outputs[OLE DB Source Output].Columns[COD_FABRICA]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Carga Fato 001\Carga Fato 001.Outputs[OLE DB Source Output].ExternalColumns[COD_FABRICA]"
+                      length="50"
+                      lineageId="Package\Carga Fato 001\Carga Fato 001.Outputs[OLE DB Source Output].Columns[COD_FABRICA]"
+                      name="COD_FABRICA"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Carga Fato 001\Carga Fato 001.Outputs[OLE DB Source Output].Columns[COD_PRODUTO]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Carga Fato 001\Carga Fato 001.Outputs[OLE DB Source Output].ExternalColumns[COD_PRODUTO]"
+                      length="50"
+                      lineageId="Package\Carga Fato 001\Carga Fato 001.Outputs[OLE DB Source Output].Columns[COD_PRODUTO]"
+                      name="COD_PRODUTO"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Carga Fato 001\Carga Fato 001.Outputs[OLE DB Source Output].Columns[COD_ORGANIZACIONAL]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Carga Fato 001\Carga Fato 001.Outputs[OLE DB Source Output].ExternalColumns[COD_ORGANIZACIONAL]"
+                      length="50"
+                      lineageId="Package\Carga Fato 001\Carga Fato 001.Outputs[OLE DB Source Output].Columns[COD_ORGANIZACIONAL]"
+                      name="COD_ORGANIZACIONAL"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Carga Fato 001\Carga Fato 001.Outputs[OLE DB Source Output].Columns[FATURAMENTO]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Carga Fato 001\Carga Fato 001.Outputs[OLE DB Source Output].ExternalColumns[FATURAMENTO]"
+                      lineageId="Package\Carga Fato 001\Carga Fato 001.Outputs[OLE DB Source Output].Columns[FATURAMENTO]"
+                      name="FATURAMENTO"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Carga Fato 001\Carga Fato 001.Outputs[OLE DB Source Output].Columns[IMPOSTO]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Carga Fato 001\Carga Fato 001.Outputs[OLE DB Source Output].ExternalColumns[IMPOSTO]"
+                      lineageId="Package\Carga Fato 001\Carga Fato 001.Outputs[OLE DB Source Output].Columns[IMPOSTO]"
+                      name="IMPOSTO"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Carga Fato 001\Carga Fato 001.Outputs[OLE DB Source Output].Columns[CUSTO_VARIAVEL]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Carga Fato 001\Carga Fato 001.Outputs[OLE DB Source Output].ExternalColumns[CUSTO_VARIAVEL]"
+                      lineageId="Package\Carga Fato 001\Carga Fato 001.Outputs[OLE DB Source Output].Columns[CUSTO_VARIAVEL]"
+                      name="CUSTO_VARIAVEL"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Carga Fato 001\Carga Fato 001.Outputs[OLE DB Source Output].Columns[UNIDADE_VENDIDA]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Carga Fato 001\Carga Fato 001.Outputs[OLE DB Source Output].ExternalColumns[UNIDADE_VENDIDA]"
+                      lineageId="Package\Carga Fato 001\Carga Fato 001.Outputs[OLE DB Source Output].Columns[UNIDADE_VENDIDA]"
+                      name="UNIDADE_VENDIDA"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Carga Fato 001\Carga Fato 001.Outputs[OLE DB Source Output].Columns[QUANTIDADE_VENDIDA]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Carga Fato 001\Carga Fato 001.Outputs[OLE DB Source Output].ExternalColumns[QUANTIDADE_VENDIDA]"
+                      lineageId="Package\Carga Fato 001\Carga Fato 001.Outputs[OLE DB Source Output].Columns[QUANTIDADE_VENDIDA]"
+                      name="QUANTIDADE_VENDIDA"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Carga Fato 001\Carga Fato 001.Outputs[OLE DB Source Output].ExternalColumns[DATA_FATO]"
+                      dataType="dbTimeStamp"
+                      name="DATA_FATO" />
+                    <externalMetadataColumn
+                      refId="Package\Carga Fato 001\Carga Fato 001.Outputs[OLE DB Source Output].ExternalColumns[COD_DIA]"
+                      dataType="wstr"
+                      length="50"
+                      name="COD_DIA" />
+                    <externalMetadataColumn
+                      refId="Package\Carga Fato 001\Carga Fato 001.Outputs[OLE DB Source Output].ExternalColumns[COD_CLIENTE]"
+                      dataType="wstr"
+                      length="50"
+                      name="COD_CLIENTE" />
+                    <externalMetadataColumn
+                      refId="Package\Carga Fato 001\Carga Fato 001.Outputs[OLE DB Source Output].ExternalColumns[COD_FABRICA]"
+                      dataType="wstr"
+                      length="50"
+                      name="COD_FABRICA" />
+                    <externalMetadataColumn
+                      refId="Package\Carga Fato 001\Carga Fato 001.Outputs[OLE DB Source Output].ExternalColumns[COD_PRODUTO]"
+                      dataType="wstr"
+                      length="50"
+                      name="COD_PRODUTO" />
+                    <externalMetadataColumn
+                      refId="Package\Carga Fato 001\Carga Fato 001.Outputs[OLE DB Source Output].ExternalColumns[COD_ORGANIZACIONAL]"
+                      dataType="wstr"
+                      length="50"
+                      name="COD_ORGANIZACIONAL" />
+                    <externalMetadataColumn
+                      refId="Package\Carga Fato 001\Carga Fato 001.Outputs[OLE DB Source Output].ExternalColumns[FATURAMENTO]"
+                      dataType="r8"
+                      name="FATURAMENTO" />
+                    <externalMetadataColumn
+                      refId="Package\Carga Fato 001\Carga Fato 001.Outputs[OLE DB Source Output].ExternalColumns[IMPOSTO]"
+                      dataType="r8"
+                      name="IMPOSTO" />
+                    <externalMetadataColumn
+                      refId="Package\Carga Fato 001\Carga Fato 001.Outputs[OLE DB Source Output].ExternalColumns[CUSTO_VARIAVEL]"
+                      dataType="r8"
+                      name="CUSTO_VARIAVEL" />
+                    <externalMetadataColumn
+                      refId="Package\Carga Fato 001\Carga Fato 001.Outputs[OLE DB Source Output].ExternalColumns[UNIDADE_VENDIDA]"
+                      dataType="r8"
+                      name="UNIDADE_VENDIDA" />
+                    <externalMetadataColumn
+                      refId="Package\Carga Fato 001\Carga Fato 001.Outputs[OLE DB Source Output].ExternalColumns[QUANTIDADE_VENDIDA]"
+                      dataType="r8"
+                      name="QUANTIDADE_VENDIDA" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Carga Fato 001\Carga Fato 001.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Carga Fato 001\Carga Fato 001.Outputs[OLE DB Source Error Output].Columns[DATA_FATO]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Carga Fato 001\Carga Fato 001.Outputs[OLE DB Source Error Output].Columns[DATA_FATO]"
+                      name="DATA_FATO" />
+                    <outputColumn
+                      refId="Package\Carga Fato 001\Carga Fato 001.Outputs[OLE DB Source Error Output].Columns[COD_DIA]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Carga Fato 001\Carga Fato 001.Outputs[OLE DB Source Error Output].Columns[COD_DIA]"
+                      name="COD_DIA" />
+                    <outputColumn
+                      refId="Package\Carga Fato 001\Carga Fato 001.Outputs[OLE DB Source Error Output].Columns[COD_CLIENTE]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Carga Fato 001\Carga Fato 001.Outputs[OLE DB Source Error Output].Columns[COD_CLIENTE]"
+                      name="COD_CLIENTE" />
+                    <outputColumn
+                      refId="Package\Carga Fato 001\Carga Fato 001.Outputs[OLE DB Source Error Output].Columns[COD_FABRICA]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Carga Fato 001\Carga Fato 001.Outputs[OLE DB Source Error Output].Columns[COD_FABRICA]"
+                      name="COD_FABRICA" />
+                    <outputColumn
+                      refId="Package\Carga Fato 001\Carga Fato 001.Outputs[OLE DB Source Error Output].Columns[COD_PRODUTO]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Carga Fato 001\Carga Fato 001.Outputs[OLE DB Source Error Output].Columns[COD_PRODUTO]"
+                      name="COD_PRODUTO" />
+                    <outputColumn
+                      refId="Package\Carga Fato 001\Carga Fato 001.Outputs[OLE DB Source Error Output].Columns[COD_ORGANIZACIONAL]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Carga Fato 001\Carga Fato 001.Outputs[OLE DB Source Error Output].Columns[COD_ORGANIZACIONAL]"
+                      name="COD_ORGANIZACIONAL" />
+                    <outputColumn
+                      refId="Package\Carga Fato 001\Carga Fato 001.Outputs[OLE DB Source Error Output].Columns[FATURAMENTO]"
+                      dataType="r8"
+                      lineageId="Package\Carga Fato 001\Carga Fato 001.Outputs[OLE DB Source Error Output].Columns[FATURAMENTO]"
+                      name="FATURAMENTO" />
+                    <outputColumn
+                      refId="Package\Carga Fato 001\Carga Fato 001.Outputs[OLE DB Source Error Output].Columns[IMPOSTO]"
+                      dataType="r8"
+                      lineageId="Package\Carga Fato 001\Carga Fato 001.Outputs[OLE DB Source Error Output].Columns[IMPOSTO]"
+                      name="IMPOSTO" />
+                    <outputColumn
+                      refId="Package\Carga Fato 001\Carga Fato 001.Outputs[OLE DB Source Error Output].Columns[CUSTO_VARIAVEL]"
+                      dataType="r8"
+                      lineageId="Package\Carga Fato 001\Carga Fato 001.Outputs[OLE DB Source Error Output].Columns[CUSTO_VARIAVEL]"
+                      name="CUSTO_VARIAVEL" />
+                    <outputColumn
+                      refId="Package\Carga Fato 001\Carga Fato 001.Outputs[OLE DB Source Error Output].Columns[UNIDADE_VENDIDA]"
+                      dataType="r8"
+                      lineageId="Package\Carga Fato 001\Carga Fato 001.Outputs[OLE DB Source Error Output].Columns[UNIDADE_VENDIDA]"
+                      name="UNIDADE_VENDIDA" />
+                    <outputColumn
+                      refId="Package\Carga Fato 001\Carga Fato 001.Outputs[OLE DB Source Error Output].Columns[QUANTIDADE_VENDIDA]"
+                      dataType="r8"
+                      lineageId="Package\Carga Fato 001\Carga Fato 001.Outputs[OLE DB Source Error Output].Columns[QUANTIDADE_VENDIDA]"
+                      name="QUANTIDADE_VENDIDA" />
+                    <outputColumn
+                      refId="Package\Carga Fato 001\Carga Fato 001.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Carga Fato 001\Carga Fato 001.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Carga Fato 001\Carga Fato 001.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Carga Fato 001\Carga Fato 001.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Carga Fato 001\Insert Destination"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="Insert Destination"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[TAB_FATO001]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Carga Fato 001\Insert Destination.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Conexão Fontes DB]"
+                  connectionManagerRefId="Package.ConnectionManagers[Conexão Fontes DB]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Carga Fato 001\Insert Destination.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Carga Fato 001\Insert Destination.Inputs[OLE DB Destination Input].Columns[DATA_FATO]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="DATA_FATO"
+                      externalMetadataColumnId="Package\Carga Fato 001\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[DATA_FATO]"
+                      lineageId="Package\Carga Fato 001\Carga Fato 001.Outputs[OLE DB Source Output].Columns[DATA_FATO]" />
+                    <inputColumn
+                      refId="Package\Carga Fato 001\Insert Destination.Inputs[OLE DB Destination Input].Columns[COD_DIA]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="COD_DIA"
+                      externalMetadataColumnId="Package\Carga Fato 001\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[COD_DIA]"
+                      lineageId="Package\Carga Fato 001\Carga Fato 001.Outputs[OLE DB Source Output].Columns[COD_DIA]" />
+                    <inputColumn
+                      refId="Package\Carga Fato 001\Insert Destination.Inputs[OLE DB Destination Input].Columns[COD_CLIENTE]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="COD_CLIENTE"
+                      externalMetadataColumnId="Package\Carga Fato 001\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[COD_CLIENTE]"
+                      lineageId="Package\Carga Fato 001\Carga Fato 001.Outputs[OLE DB Source Output].Columns[COD_CLIENTE]" />
+                    <inputColumn
+                      refId="Package\Carga Fato 001\Insert Destination.Inputs[OLE DB Destination Input].Columns[COD_FABRICA]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="COD_FABRICA"
+                      externalMetadataColumnId="Package\Carga Fato 001\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[COD_FABRICA]"
+                      lineageId="Package\Carga Fato 001\Carga Fato 001.Outputs[OLE DB Source Output].Columns[COD_FABRICA]" />
+                    <inputColumn
+                      refId="Package\Carga Fato 001\Insert Destination.Inputs[OLE DB Destination Input].Columns[COD_PRODUTO]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="COD_PRODUTO"
+                      externalMetadataColumnId="Package\Carga Fato 001\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[COD_PRODUTO]"
+                      lineageId="Package\Carga Fato 001\Carga Fato 001.Outputs[OLE DB Source Output].Columns[COD_PRODUTO]" />
+                    <inputColumn
+                      refId="Package\Carga Fato 001\Insert Destination.Inputs[OLE DB Destination Input].Columns[COD_ORGANIZACIONAL]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="COD_ORGANIZACIONAL"
+                      externalMetadataColumnId="Package\Carga Fato 001\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[COD_ORGANIZACIONAL]"
+                      lineageId="Package\Carga Fato 001\Carga Fato 001.Outputs[OLE DB Source Output].Columns[COD_ORGANIZACIONAL]" />
+                    <inputColumn
+                      refId="Package\Carga Fato 001\Insert Destination.Inputs[OLE DB Destination Input].Columns[FATURAMENTO]"
+                      cachedDataType="r8"
+                      cachedName="FATURAMENTO"
+                      externalMetadataColumnId="Package\Carga Fato 001\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[FATURAMENTO]"
+                      lineageId="Package\Carga Fato 001\Carga Fato 001.Outputs[OLE DB Source Output].Columns[FATURAMENTO]" />
+                    <inputColumn
+                      refId="Package\Carga Fato 001\Insert Destination.Inputs[OLE DB Destination Input].Columns[IMPOSTO]"
+                      cachedDataType="r8"
+                      cachedName="IMPOSTO"
+                      externalMetadataColumnId="Package\Carga Fato 001\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[IMPOSTO]"
+                      lineageId="Package\Carga Fato 001\Carga Fato 001.Outputs[OLE DB Source Output].Columns[IMPOSTO]" />
+                    <inputColumn
+                      refId="Package\Carga Fato 001\Insert Destination.Inputs[OLE DB Destination Input].Columns[CUSTO_VARIAVEL]"
+                      cachedDataType="r8"
+                      cachedName="CUSTO_VARIAVEL"
+                      externalMetadataColumnId="Package\Carga Fato 001\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[CUSTO_VARIAVEL]"
+                      lineageId="Package\Carga Fato 001\Carga Fato 001.Outputs[OLE DB Source Output].Columns[CUSTO_VARIAVEL]" />
+                    <inputColumn
+                      refId="Package\Carga Fato 001\Insert Destination.Inputs[OLE DB Destination Input].Columns[UNIDADE_VENDIDA]"
+                      cachedDataType="r8"
+                      cachedName="UNIDADE_VENDIDA"
+                      externalMetadataColumnId="Package\Carga Fato 001\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[UNIDADE_VENDIDA]"
+                      lineageId="Package\Carga Fato 001\Carga Fato 001.Outputs[OLE DB Source Output].Columns[UNIDADE_VENDIDA]" />
+                    <inputColumn
+                      refId="Package\Carga Fato 001\Insert Destination.Inputs[OLE DB Destination Input].Columns[QUANTIDADE_VENDIDA]"
+                      cachedDataType="r8"
+                      cachedName="QUANTIDADE_VENDIDA"
+                      externalMetadataColumnId="Package\Carga Fato 001\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[QUANTIDADE_VENDIDA]"
+                      lineageId="Package\Carga Fato 001\Carga Fato 001.Outputs[OLE DB Source Output].Columns[QUANTIDADE_VENDIDA]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Carga Fato 001\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[DATA_FATO]"
+                      dataType="dbTimeStamp"
+                      name="DATA_FATO" />
+                    <externalMetadataColumn
+                      refId="Package\Carga Fato 001\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[COD_DIA]"
+                      dataType="wstr"
+                      length="50"
+                      name="COD_DIA" />
+                    <externalMetadataColumn
+                      refId="Package\Carga Fato 001\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[COD_CLIENTE]"
+                      dataType="wstr"
+                      length="50"
+                      name="COD_CLIENTE" />
+                    <externalMetadataColumn
+                      refId="Package\Carga Fato 001\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[COD_FABRICA]"
+                      dataType="wstr"
+                      length="50"
+                      name="COD_FABRICA" />
+                    <externalMetadataColumn
+                      refId="Package\Carga Fato 001\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[COD_PRODUTO]"
+                      dataType="wstr"
+                      length="50"
+                      name="COD_PRODUTO" />
+                    <externalMetadataColumn
+                      refId="Package\Carga Fato 001\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[COD_ORGANIZACIONAL]"
+                      dataType="wstr"
+                      length="50"
+                      name="COD_ORGANIZACIONAL" />
+                    <externalMetadataColumn
+                      refId="Package\Carga Fato 001\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[FATURAMENTO]"
+                      dataType="r8"
+                      name="FATURAMENTO" />
+                    <externalMetadataColumn
+                      refId="Package\Carga Fato 001\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[IMPOSTO]"
+                      dataType="r8"
+                      name="IMPOSTO" />
+                    <externalMetadataColumn
+                      refId="Package\Carga Fato 001\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[CUSTO_VARIAVEL]"
+                      dataType="r8"
+                      name="CUSTO_VARIAVEL" />
+                    <externalMetadataColumn
+                      refId="Package\Carga Fato 001\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[UNIDADE_VENDIDA]"
+                      dataType="r8"
+                      name="UNIDADE_VENDIDA" />
+                    <externalMetadataColumn
+                      refId="Package\Carga Fato 001\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[QUANTIDADE_VENDIDA]"
+                      dataType="r8"
+                      name="QUANTIDADE_VENDIDA" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Carga Fato 001\Insert Destination.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Carga Fato 001\Insert Destination.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Carga Fato 001\Insert Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Carga Fato 001\Insert Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Carga Fato 001\Insert Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Carga Fato 001\Insert Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Carga Fato 001\OLE DB Command"
+              componentClassID="Microsoft.OLEDBCommand"
+              contactInfo="OLE DB Command;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+              description="Runs an SQL statement for each row in a data flow. For example, call a 'new employee setup' stored procedure for each row in the 'new employees' table. Note: running an SQL statement for each row of a large data flow may take a long time."
+              name="OLE DB Command"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">UPDATE [dbo].[TAB_FATO001] SET [CUSTO_VARIAVEL] = ?,[DATA_FATO] = ?,[FATURAMENTO] = ?,[IMPOSTO] = ?,[QUANTIDADE_VENDIDA] = ?,[UNIDADE_VENDIDA] = ? WHERE [COD_CLIENTE] = ? AND [COD_DIA] = ? AND [COD_FABRICA] = ? AND [COD_ORGANIZACIONAL] = ? AND [COD_PRODUTO] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Carga Fato 001\OLE DB Command.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Conexão Fontes DB]"
+                  connectionManagerRefId="Package.ConnectionManagers[Conexão Fontes DB]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Carga Fato 001\OLE DB Command.Inputs[OLE DB Command Input]"
+                  errorOrTruncationOperation="Command Execution"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Command Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Carga Fato 001\OLE DB Command.Inputs[OLE DB Command Input].Columns[COD_CLIENTE]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="COD_CLIENTE"
+                      externalMetadataColumnId="Package\Carga Fato 001\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_6]"
+                      lineageId="Package\Carga Fato 001\Carga Fato 001.Outputs[OLE DB Source Output].Columns[COD_CLIENTE]" />
+                    <inputColumn
+                      refId="Package\Carga Fato 001\OLE DB Command.Inputs[OLE DB Command Input].Columns[COD_DIA]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="COD_DIA"
+                      externalMetadataColumnId="Package\Carga Fato 001\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_7]"
+                      lineageId="Package\Carga Fato 001\Carga Fato 001.Outputs[OLE DB Source Output].Columns[COD_DIA]" />
+                    <inputColumn
+                      refId="Package\Carga Fato 001\OLE DB Command.Inputs[OLE DB Command Input].Columns[COD_FABRICA]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="COD_FABRICA"
+                      externalMetadataColumnId="Package\Carga Fato 001\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_8]"
+                      lineageId="Package\Carga Fato 001\Carga Fato 001.Outputs[OLE DB Source Output].Columns[COD_FABRICA]" />
+                    <inputColumn
+                      refId="Package\Carga Fato 001\OLE DB Command.Inputs[OLE DB Command Input].Columns[COD_ORGANIZACIONAL]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="COD_ORGANIZACIONAL"
+                      externalMetadataColumnId="Package\Carga Fato 001\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_9]"
+                      lineageId="Package\Carga Fato 001\Carga Fato 001.Outputs[OLE DB Source Output].Columns[COD_ORGANIZACIONAL]" />
+                    <inputColumn
+                      refId="Package\Carga Fato 001\OLE DB Command.Inputs[OLE DB Command Input].Columns[COD_PRODUTO]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="COD_PRODUTO"
+                      externalMetadataColumnId="Package\Carga Fato 001\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_10]"
+                      lineageId="Package\Carga Fato 001\Carga Fato 001.Outputs[OLE DB Source Output].Columns[COD_PRODUTO]" />
+                    <inputColumn
+                      refId="Package\Carga Fato 001\OLE DB Command.Inputs[OLE DB Command Input].Columns[CUSTO_VARIAVEL]"
+                      cachedDataType="r8"
+                      cachedName="CUSTO_VARIAVEL"
+                      externalMetadataColumnId="Package\Carga Fato 001\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      lineageId="Package\Carga Fato 001\Carga Fato 001.Outputs[OLE DB Source Output].Columns[CUSTO_VARIAVEL]" />
+                    <inputColumn
+                      refId="Package\Carga Fato 001\OLE DB Command.Inputs[OLE DB Command Input].Columns[DATA_FATO]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="DATA_FATO"
+                      externalMetadataColumnId="Package\Carga Fato 001\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                      lineageId="Package\Carga Fato 001\Carga Fato 001.Outputs[OLE DB Source Output].Columns[DATA_FATO]" />
+                    <inputColumn
+                      refId="Package\Carga Fato 001\OLE DB Command.Inputs[OLE DB Command Input].Columns[FATURAMENTO]"
+                      cachedDataType="r8"
+                      cachedName="FATURAMENTO"
+                      externalMetadataColumnId="Package\Carga Fato 001\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_2]"
+                      lineageId="Package\Carga Fato 001\Carga Fato 001.Outputs[OLE DB Source Output].Columns[FATURAMENTO]" />
+                    <inputColumn
+                      refId="Package\Carga Fato 001\OLE DB Command.Inputs[OLE DB Command Input].Columns[IMPOSTO]"
+                      cachedDataType="r8"
+                      cachedName="IMPOSTO"
+                      externalMetadataColumnId="Package\Carga Fato 001\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_3]"
+                      lineageId="Package\Carga Fato 001\Carga Fato 001.Outputs[OLE DB Source Output].Columns[IMPOSTO]" />
+                    <inputColumn
+                      refId="Package\Carga Fato 001\OLE DB Command.Inputs[OLE DB Command Input].Columns[QUANTIDADE_VENDIDA]"
+                      cachedDataType="r8"
+                      cachedName="QUANTIDADE_VENDIDA"
+                      externalMetadataColumnId="Package\Carga Fato 001\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_4]"
+                      lineageId="Package\Carga Fato 001\Carga Fato 001.Outputs[OLE DB Source Output].Columns[QUANTIDADE_VENDIDA]" />
+                    <inputColumn
+                      refId="Package\Carga Fato 001\OLE DB Command.Inputs[OLE DB Command Input].Columns[UNIDADE_VENDIDA]"
+                      cachedDataType="r8"
+                      cachedName="UNIDADE_VENDIDA"
+                      externalMetadataColumnId="Package\Carga Fato 001\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_5]"
+                      lineageId="Package\Carga Fato 001\Carga Fato 001.Outputs[OLE DB Source Output].Columns[UNIDADE_VENDIDA]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Carga Fato 001\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      dataType="r8"
+                      name="Param_0">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">81</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Carga Fato 001\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                      dataType="dbTimeStamp"
+                      name="Param_1">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Carga Fato 001\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_2]"
+                      dataType="r8"
+                      name="Param_2">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">81</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Carga Fato 001\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_3]"
+                      dataType="r8"
+                      name="Param_3">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">81</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Carga Fato 001\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_4]"
+                      dataType="r8"
+                      name="Param_4">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">81</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Carga Fato 001\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_5]"
+                      dataType="r8"
+                      name="Param_5">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">81</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Carga Fato 001\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_6]"
+                      dataType="wstr"
+                      length="50"
+                      name="Param_6">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Carga Fato 001\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_7]"
+                      dataType="wstr"
+                      length="50"
+                      name="Param_7">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Carga Fato 001\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_8]"
+                      dataType="wstr"
+                      length="50"
+                      name="Param_8">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Carga Fato 001\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_9]"
+                      dataType="wstr"
+                      length="50"
+                      name="Param_9">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Carga Fato 001\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_10]"
+                      dataType="wstr"
+                      length="50"
+                      name="Param_10">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Carga Fato 001\OLE DB Command.Outputs[OLE DB Command Output]"
+                  exclusionGroup="1"
+                  name="OLE DB Command Output"
+                  synchronousInputId="Package\Carga Fato 001\OLE DB Command.Inputs[OLE DB Command Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Carga Fato 001\OLE DB Command.Outputs[OLE DB Command Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Command Error Output"
+                  synchronousInputId="Package\Carga Fato 001\OLE DB Command.Inputs[OLE DB Command Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Carga Fato 001\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Carga Fato 001\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Carga Fato 001\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Carga Fato 001\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Carga Fato 001\OLE DB Command 1"
+              componentClassID="Microsoft.OLEDBCommand"
+              contactInfo="OLE DB Command;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+              description="Runs an SQL statement for each row in a data flow. For example, call a 'new employee setup' stored procedure for each row in the 'new employees' table. Note: running an SQL statement for each row of a large data flow may take a long time."
+              name="OLE DB Command 1"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">UPDATE [dbo].[TAB_FATO001] SET [CUSTO_VARIAVEL] = ?,[DATA_FATO] = ?,[FATURAMENTO] = ?,[IMPOSTO] = ?,[QUANTIDADE_VENDIDA] = ?,[UNIDADE_VENDIDA] = ? WHERE [COD_CLIENTE] = ? AND [COD_DIA] = ? AND [COD_FABRICA] = ? AND [COD_ORGANIZACIONAL] = ? AND [COD_PRODUTO] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Carga Fato 001\OLE DB Command 1.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Conexão Fontes DB]"
+                  connectionManagerRefId="Package.ConnectionManagers[Conexão Fontes DB]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Carga Fato 001\OLE DB Command 1.Inputs[OLE DB Command Input]"
+                  errorOrTruncationOperation="Command Execution"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Command Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Carga Fato 001\OLE DB Command 1.Inputs[OLE DB Command Input].Columns[COD_CLIENTE]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="COD_CLIENTE"
+                      externalMetadataColumnId="Package\Carga Fato 001\OLE DB Command 1.Inputs[OLE DB Command Input].ExternalColumns[Param_6]"
+                      lineageId="Package\Carga Fato 001\Carga Fato 001.Outputs[OLE DB Source Output].Columns[COD_CLIENTE]" />
+                    <inputColumn
+                      refId="Package\Carga Fato 001\OLE DB Command 1.Inputs[OLE DB Command Input].Columns[COD_DIA]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="COD_DIA"
+                      externalMetadataColumnId="Package\Carga Fato 001\OLE DB Command 1.Inputs[OLE DB Command Input].ExternalColumns[Param_7]"
+                      lineageId="Package\Carga Fato 001\Carga Fato 001.Outputs[OLE DB Source Output].Columns[COD_DIA]" />
+                    <inputColumn
+                      refId="Package\Carga Fato 001\OLE DB Command 1.Inputs[OLE DB Command Input].Columns[COD_FABRICA]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="COD_FABRICA"
+                      externalMetadataColumnId="Package\Carga Fato 001\OLE DB Command 1.Inputs[OLE DB Command Input].ExternalColumns[Param_8]"
+                      lineageId="Package\Carga Fato 001\Carga Fato 001.Outputs[OLE DB Source Output].Columns[COD_FABRICA]" />
+                    <inputColumn
+                      refId="Package\Carga Fato 001\OLE DB Command 1.Inputs[OLE DB Command Input].Columns[COD_ORGANIZACIONAL]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="COD_ORGANIZACIONAL"
+                      externalMetadataColumnId="Package\Carga Fato 001\OLE DB Command 1.Inputs[OLE DB Command Input].ExternalColumns[Param_9]"
+                      lineageId="Package\Carga Fato 001\Carga Fato 001.Outputs[OLE DB Source Output].Columns[COD_ORGANIZACIONAL]" />
+                    <inputColumn
+                      refId="Package\Carga Fato 001\OLE DB Command 1.Inputs[OLE DB Command Input].Columns[COD_PRODUTO]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="COD_PRODUTO"
+                      externalMetadataColumnId="Package\Carga Fato 001\OLE DB Command 1.Inputs[OLE DB Command Input].ExternalColumns[Param_10]"
+                      lineageId="Package\Carga Fato 001\Carga Fato 001.Outputs[OLE DB Source Output].Columns[COD_PRODUTO]" />
+                    <inputColumn
+                      refId="Package\Carga Fato 001\OLE DB Command 1.Inputs[OLE DB Command Input].Columns[CUSTO_VARIAVEL]"
+                      cachedDataType="r8"
+                      cachedName="CUSTO_VARIAVEL"
+                      externalMetadataColumnId="Package\Carga Fato 001\OLE DB Command 1.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      lineageId="Package\Carga Fato 001\Carga Fato 001.Outputs[OLE DB Source Output].Columns[CUSTO_VARIAVEL]" />
+                    <inputColumn
+                      refId="Package\Carga Fato 001\OLE DB Command 1.Inputs[OLE DB Command Input].Columns[DATA_FATO]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="DATA_FATO"
+                      externalMetadataColumnId="Package\Carga Fato 001\OLE DB Command 1.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                      lineageId="Package\Carga Fato 001\Carga Fato 001.Outputs[OLE DB Source Output].Columns[DATA_FATO]" />
+                    <inputColumn
+                      refId="Package\Carga Fato 001\OLE DB Command 1.Inputs[OLE DB Command Input].Columns[FATURAMENTO]"
+                      cachedDataType="r8"
+                      cachedName="FATURAMENTO"
+                      externalMetadataColumnId="Package\Carga Fato 001\OLE DB Command 1.Inputs[OLE DB Command Input].ExternalColumns[Param_2]"
+                      lineageId="Package\Carga Fato 001\Carga Fato 001.Outputs[OLE DB Source Output].Columns[FATURAMENTO]" />
+                    <inputColumn
+                      refId="Package\Carga Fato 001\OLE DB Command 1.Inputs[OLE DB Command Input].Columns[IMPOSTO]"
+                      cachedDataType="r8"
+                      cachedName="IMPOSTO"
+                      externalMetadataColumnId="Package\Carga Fato 001\OLE DB Command 1.Inputs[OLE DB Command Input].ExternalColumns[Param_3]"
+                      lineageId="Package\Carga Fato 001\Carga Fato 001.Outputs[OLE DB Source Output].Columns[IMPOSTO]" />
+                    <inputColumn
+                      refId="Package\Carga Fato 001\OLE DB Command 1.Inputs[OLE DB Command Input].Columns[QUANTIDADE_VENDIDA]"
+                      cachedDataType="r8"
+                      cachedName="QUANTIDADE_VENDIDA"
+                      externalMetadataColumnId="Package\Carga Fato 001\OLE DB Command 1.Inputs[OLE DB Command Input].ExternalColumns[Param_4]"
+                      lineageId="Package\Carga Fato 001\Carga Fato 001.Outputs[OLE DB Source Output].Columns[QUANTIDADE_VENDIDA]" />
+                    <inputColumn
+                      refId="Package\Carga Fato 001\OLE DB Command 1.Inputs[OLE DB Command Input].Columns[UNIDADE_VENDIDA]"
+                      cachedDataType="r8"
+                      cachedName="UNIDADE_VENDIDA"
+                      externalMetadataColumnId="Package\Carga Fato 001\OLE DB Command 1.Inputs[OLE DB Command Input].ExternalColumns[Param_5]"
+                      lineageId="Package\Carga Fato 001\Carga Fato 001.Outputs[OLE DB Source Output].Columns[UNIDADE_VENDIDA]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Carga Fato 001\OLE DB Command 1.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      dataType="r8"
+                      name="Param_0">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">81</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Carga Fato 001\OLE DB Command 1.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                      dataType="dbTimeStamp"
+                      name="Param_1">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Carga Fato 001\OLE DB Command 1.Inputs[OLE DB Command Input].ExternalColumns[Param_2]"
+                      dataType="r8"
+                      name="Param_2">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">81</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Carga Fato 001\OLE DB Command 1.Inputs[OLE DB Command Input].ExternalColumns[Param_3]"
+                      dataType="r8"
+                      name="Param_3">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">81</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Carga Fato 001\OLE DB Command 1.Inputs[OLE DB Command Input].ExternalColumns[Param_4]"
+                      dataType="r8"
+                      name="Param_4">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">81</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Carga Fato 001\OLE DB Command 1.Inputs[OLE DB Command Input].ExternalColumns[Param_5]"
+                      dataType="r8"
+                      name="Param_5">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">81</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Carga Fato 001\OLE DB Command 1.Inputs[OLE DB Command Input].ExternalColumns[Param_6]"
+                      dataType="wstr"
+                      length="50"
+                      name="Param_6">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Carga Fato 001\OLE DB Command 1.Inputs[OLE DB Command Input].ExternalColumns[Param_7]"
+                      dataType="wstr"
+                      length="50"
+                      name="Param_7">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Carga Fato 001\OLE DB Command 1.Inputs[OLE DB Command Input].ExternalColumns[Param_8]"
+                      dataType="wstr"
+                      length="50"
+                      name="Param_8">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Carga Fato 001\OLE DB Command 1.Inputs[OLE DB Command Input].ExternalColumns[Param_9]"
+                      dataType="wstr"
+                      length="50"
+                      name="Param_9">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Carga Fato 001\OLE DB Command 1.Inputs[OLE DB Command Input].ExternalColumns[Param_10]"
+                      dataType="wstr"
+                      length="50"
+                      name="Param_10">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Carga Fato 001\OLE DB Command 1.Outputs[OLE DB Command Output]"
+                  exclusionGroup="1"
+                  name="OLE DB Command Output"
+                  synchronousInputId="Package\Carga Fato 001\OLE DB Command 1.Inputs[OLE DB Command Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Carga Fato 001\OLE DB Command 1.Outputs[OLE DB Command Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Command Error Output"
+                  synchronousInputId="Package\Carga Fato 001\OLE DB Command 1.Inputs[OLE DB Command Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Carga Fato 001\OLE DB Command 1.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Carga Fato 001\OLE DB Command 1.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Carga Fato 001\OLE DB Command 1.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Carga Fato 001\OLE DB Command 1.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Carga Fato 001\Slowly Changing Dimension"
+              componentClassID="Microsoft.SCD"
+              contactInfo="Slowly Changing Dimension;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;3"
+              description="Updates a SQL Server Analysis Services data warehouse dimension. Update dimension records that are already present and  insert dimension records that aren't. For example, update the DimProduct table of the AdventureWorksDW OLAP database with data from the Products table in the AdventureWorks OLTP database."
+              name="Slowly Changing Dimension"
+              version="3">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SELECT statement used to create a schema rowset."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT [COD_CLIENTE], [COD_DIA], [COD_FABRICA], [COD_ORGANIZACIONAL], [COD_PRODUTO], [CUSTO_VARIAVEL], [DATA_FATO], [FATURAMENTO], [IMPOSTO], [QUANTIDADE_VENDIDA], [UNIDADE_VENDIDA] FROM [dbo].[TAB_FATO001]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the WHERE clause in the SELECT statement that selects the current row among rows with identical business keys."
+                  name="CurrentRowWhere"></property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether historical attribute updates are directed to the transformation output for changing attribute updates."
+                  name="UpdateChangingAttributeHistory">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the transformation fails when columns with fixed attributes contain changes."
+                  name="FailOnFixedAttributeChange">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the column name for the inferred member."
+                  name="InferredMemberIndicator"></property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether inferred member updates are detected."
+                  name="EnableInferredMember">true</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the transformation fails when a lookup of an existing record fails."
+                  name="FailOnLookupFailure">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies that all rows in the input are new or the transformation detects the change type."
+                  name="IncomingRowChangeType"
+                  typeConverter="IncomingRowChangeType">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Carga Fato 001\Slowly Changing Dimension.Connections[LookupConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Conexão Fontes DB]"
+                  connectionManagerRefId="Package.ConnectionManagers[Conexão Fontes DB]"
+                  description="Defines the connection to use for lookups in the dimension table"
+                  name="LookupConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Carga Fato 001\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input]"
+                  name="Slowly Changing Dimension Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Carga Fato 001\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].Columns[COD_CLIENTE]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="COD_CLIENTE"
+                      externalMetadataColumnId="Package\Carga Fato 001\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[COD_CLIENTE]"
+                      lineageId="Package\Carga Fato 001\Carga Fato 001.Outputs[OLE DB Source Output].Columns[COD_CLIENTE]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          name="ColumnType"
+                          typeConverter="ColumnType">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Carga Fato 001\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].Columns[COD_DIA]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="COD_DIA"
+                      externalMetadataColumnId="Package\Carga Fato 001\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[COD_DIA]"
+                      lineageId="Package\Carga Fato 001\Carga Fato 001.Outputs[OLE DB Source Output].Columns[COD_DIA]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          name="ColumnType"
+                          typeConverter="ColumnType">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Carga Fato 001\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].Columns[COD_FABRICA]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="COD_FABRICA"
+                      externalMetadataColumnId="Package\Carga Fato 001\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[COD_FABRICA]"
+                      lineageId="Package\Carga Fato 001\Carga Fato 001.Outputs[OLE DB Source Output].Columns[COD_FABRICA]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          name="ColumnType"
+                          typeConverter="ColumnType">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Carga Fato 001\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].Columns[COD_ORGANIZACIONAL]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="COD_ORGANIZACIONAL"
+                      externalMetadataColumnId="Package\Carga Fato 001\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[COD_ORGANIZACIONAL]"
+                      lineageId="Package\Carga Fato 001\Carga Fato 001.Outputs[OLE DB Source Output].Columns[COD_ORGANIZACIONAL]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          name="ColumnType"
+                          typeConverter="ColumnType">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Carga Fato 001\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].Columns[COD_PRODUTO]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="COD_PRODUTO"
+                      externalMetadataColumnId="Package\Carga Fato 001\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[COD_PRODUTO]"
+                      lineageId="Package\Carga Fato 001\Carga Fato 001.Outputs[OLE DB Source Output].Columns[COD_PRODUTO]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          name="ColumnType"
+                          typeConverter="ColumnType">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Carga Fato 001\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].Columns[CUSTO_VARIAVEL]"
+                      cachedDataType="r8"
+                      cachedName="CUSTO_VARIAVEL"
+                      externalMetadataColumnId="Package\Carga Fato 001\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[CUSTO_VARIAVEL]"
+                      lineageId="Package\Carga Fato 001\Carga Fato 001.Outputs[OLE DB Source Output].Columns[CUSTO_VARIAVEL]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          name="ColumnType"
+                          typeConverter="ColumnType">2</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Carga Fato 001\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].Columns[DATA_FATO]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="DATA_FATO"
+                      externalMetadataColumnId="Package\Carga Fato 001\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[DATA_FATO]"
+                      lineageId="Package\Carga Fato 001\Carga Fato 001.Outputs[OLE DB Source Output].Columns[DATA_FATO]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          name="ColumnType"
+                          typeConverter="ColumnType">2</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Carga Fato 001\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].Columns[FATURAMENTO]"
+                      cachedDataType="r8"
+                      cachedName="FATURAMENTO"
+                      externalMetadataColumnId="Package\Carga Fato 001\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[FATURAMENTO]"
+                      lineageId="Package\Carga Fato 001\Carga Fato 001.Outputs[OLE DB Source Output].Columns[FATURAMENTO]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          name="ColumnType"
+                          typeConverter="ColumnType">2</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Carga Fato 001\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].Columns[IMPOSTO]"
+                      cachedDataType="r8"
+                      cachedName="IMPOSTO"
+                      externalMetadataColumnId="Package\Carga Fato 001\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[IMPOSTO]"
+                      lineageId="Package\Carga Fato 001\Carga Fato 001.Outputs[OLE DB Source Output].Columns[IMPOSTO]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          name="ColumnType"
+                          typeConverter="ColumnType">2</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Carga Fato 001\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].Columns[QUANTIDADE_VENDIDA]"
+                      cachedDataType="r8"
+                      cachedName="QUANTIDADE_VENDIDA"
+                      externalMetadataColumnId="Package\Carga Fato 001\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[QUANTIDADE_VENDIDA]"
+                      lineageId="Package\Carga Fato 001\Carga Fato 001.Outputs[OLE DB Source Output].Columns[QUANTIDADE_VENDIDA]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          name="ColumnType"
+                          typeConverter="ColumnType">2</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Carga Fato 001\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].Columns[UNIDADE_VENDIDA]"
+                      cachedDataType="r8"
+                      cachedName="UNIDADE_VENDIDA"
+                      externalMetadataColumnId="Package\Carga Fato 001\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[UNIDADE_VENDIDA]"
+                      lineageId="Package\Carga Fato 001\Carga Fato 001.Outputs[OLE DB Source Output].Columns[UNIDADE_VENDIDA]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          name="ColumnType"
+                          typeConverter="ColumnType">2</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Carga Fato 001\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[COD_CLIENTE]"
+                      dataType="wstr"
+                      length="50"
+                      name="COD_CLIENTE" />
+                    <externalMetadataColumn
+                      refId="Package\Carga Fato 001\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[COD_DIA]"
+                      dataType="wstr"
+                      length="50"
+                      name="COD_DIA" />
+                    <externalMetadataColumn
+                      refId="Package\Carga Fato 001\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[COD_FABRICA]"
+                      dataType="wstr"
+                      length="50"
+                      name="COD_FABRICA" />
+                    <externalMetadataColumn
+                      refId="Package\Carga Fato 001\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[COD_ORGANIZACIONAL]"
+                      dataType="wstr"
+                      length="50"
+                      name="COD_ORGANIZACIONAL" />
+                    <externalMetadataColumn
+                      refId="Package\Carga Fato 001\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[COD_PRODUTO]"
+                      dataType="wstr"
+                      length="50"
+                      name="COD_PRODUTO" />
+                    <externalMetadataColumn
+                      refId="Package\Carga Fato 001\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[CUSTO_VARIAVEL]"
+                      dataType="r8"
+                      name="CUSTO_VARIAVEL" />
+                    <externalMetadataColumn
+                      refId="Package\Carga Fato 001\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[DATA_FATO]"
+                      dataType="dbTimeStamp"
+                      name="DATA_FATO" />
+                    <externalMetadataColumn
+                      refId="Package\Carga Fato 001\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[FATURAMENTO]"
+                      dataType="r8"
+                      name="FATURAMENTO" />
+                    <externalMetadataColumn
+                      refId="Package\Carga Fato 001\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[IMPOSTO]"
+                      dataType="r8"
+                      name="IMPOSTO" />
+                    <externalMetadataColumn
+                      refId="Package\Carga Fato 001\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[QUANTIDADE_VENDIDA]"
+                      dataType="r8"
+                      name="QUANTIDADE_VENDIDA" />
+                    <externalMetadataColumn
+                      refId="Package\Carga Fato 001\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[UNIDADE_VENDIDA]"
+                      dataType="r8"
+                      name="UNIDADE_VENDIDA" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Carga Fato 001\Slowly Changing Dimension.Outputs[Unchanged Output]"
+                  description="Unchanged rows"
+                  exclusionGroup="1"
+                  name="Unchanged Output"
+                  synchronousInputId="Package\Carga Fato 001\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Carga Fato 001\Slowly Changing Dimension.Outputs[New Output]"
+                  description="New rows"
+                  exclusionGroup="1"
+                  name="New Output"
+                  synchronousInputId="Package\Carga Fato 001\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Carga Fato 001\Slowly Changing Dimension.Outputs[Fixed Attribute Output]"
+                  description="Rows with changes in columns tagged FixedAttribute"
+                  exclusionGroup="1"
+                  name="Fixed Attribute Output"
+                  synchronousInputId="Package\Carga Fato 001\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Carga Fato 001\Slowly Changing Dimension.Outputs[Changing Attribute Updates Output]"
+                  description="These rows contain new information for ChangingAttribute (Type 1) column changes"
+                  exclusionGroup="1"
+                  name="Changing Attribute Updates Output"
+                  synchronousInputId="Package\Carga Fato 001\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Carga Fato 001\Slowly Changing Dimension.Outputs[Historical Attribute Inserts Output]"
+                  description="HistoricalAttribute (Type 2) changes result in these new rows"
+                  exclusionGroup="2"
+                  name="Historical Attribute Inserts Output"
+                  synchronousInputId="Package\Carga Fato 001\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Carga Fato 001\Slowly Changing Dimension.Outputs[Inferred Member Updates Output]"
+                  description="Information to update unpopulated initial dimension row"
+                  exclusionGroup="1"
+                  name="Inferred Member Updates Output"
+                  synchronousInputId="Package\Carga Fato 001\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input]">
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Carga Fato 001.Paths[Changing Attribute Updates Output]"
+              endId="Package\Carga Fato 001\OLE DB Command 1.Inputs[OLE DB Command Input]"
+              name="Changing Attribute Updates Output"
+              startId="Package\Carga Fato 001\Slowly Changing Dimension.Outputs[Changing Attribute Updates Output]" />
+            <path
+              refId="Package\Carga Fato 001.Paths[Inferred Member Updates Output]"
+              endId="Package\Carga Fato 001\OLE DB Command.Inputs[OLE DB Command Input]"
+              name="Inferred Member Updates Output"
+              startId="Package\Carga Fato 001\Slowly Changing Dimension.Outputs[Inferred Member Updates Output]" />
+            <path
+              refId="Package\Carga Fato 001.Paths[New Output]"
+              endId="Package\Carga Fato 001\Insert Destination.Inputs[OLE DB Destination Input]"
+              name="New Output"
+              startId="Package\Carga Fato 001\Slowly Changing Dimension.Outputs[New Output]" />
+            <path
+              refId="Package\Carga Fato 001.Paths[OLE DB Source Output]"
+              endId="Package\Carga Fato 001\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input]"
+              name="OLE DB Source Output"
+              startId="Package\Carga Fato 001\Carga Fato 001.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="151,42"
+          Id="Package\Carga Fato 001"
+          TopLeft="33,30" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Carga Fato 001">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="150,42"
+          Id="Package\Carga Fato 001\Carga Fato 001"
+          TopLeft="237,5.49999999999989" />
+        <NodeLayout
+          Size="209,42"
+          Id="Package\Carga Fato 001\Slowly Changing Dimension"
+          TopLeft="207.5,107.5" />
+        <EdgeLayout
+          Id="Package\Carga Fato 001.Paths[OLE DB Source Output]"
+          TopLeft="312,47.4999999999999">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="163,42"
+          Id="Package\Carga Fato 001\Insert Destination"
+          TopLeft="5.50000000000006,209.5" />
+        <EdgeLayout
+          Id="Package\Carga Fato 001.Paths[New Output]"
+          TopLeft="261.75,149.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-174.75,60"
+              Start="0,0"
+              End="-174.75,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,16.503937007874" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,16.503937007874"
+                    Point2="0,20.503937007874"
+                    Point3="-4,20.503937007874" />
+                  <mssgle:LineSegment
+                    End="-170.75,20.503937007874" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-170.75,20.503937007874"
+                    Point2="-174.75,20.503937007874"
+                    Point3="-174.75,24.503937007874" />
+                  <mssgle:LineSegment
+                    End="-174.75,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-114.46638671875,25.503937007874,54.1827734375,11.43359375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="166,42"
+          Id="Package\Carga Fato 001\OLE DB Command"
+          TopLeft="229,209.5" />
+        <EdgeLayout
+          Id="Package\Carga Fato 001.Paths[Inferred Member Updates Output]"
+          TopLeft="312,149.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-74.40298828125,20.4208984375,148.8059765625,11.658203125"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="175,42"
+          Id="Package\Carga Fato 001\OLE DB Command 1"
+          TopLeft="455.5,209.5" />
+        <EdgeLayout
+          Id="Package\Carga Fato 001.Paths[Changing Attribute Updates Output]"
+          TopLeft="362.25,149.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="180.75,60"
+              Start="0,0"
+              End="180.75,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,16.503937007874" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,16.503937007874"
+                    Point2="0,20.503937007874"
+                    Point3="4,20.503937007874" />
+                  <mssgle:LineSegment
+                    End="176.75,20.503937007874" />
+                  <mssgle:CubicBezierSegment
+                    Point1="176.75,20.503937007874"
+                    Point2="180.75,20.503937007874"
+                    Point3="180.75,24.503937007874" />
+                  <mssgle:LineSegment
+                    End="180.75,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="11.84109375,25.503937007874,157.0678125,11.6630859375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Carga Fato 001\Carga Fato 001">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Carga Fato 001\Slowly Changing Dimension">
+    <Properties>
+      <Property>
+        <Name>SCDMetadata</Name>
+        <Value
+          type="q2:string">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;SCDWizardMetadata xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;ConnectionID&gt;{FD13F1DD-F864-4405-A19A-208FCB4D0BF2}&lt;/ConnectionID&gt;
+  &lt;TableName&gt;[dbo].[TAB_FATO001]&lt;/TableName&gt;
+  &lt;InputToColumnsCollection&gt;
+    &lt;InputColumnToDBColumn&gt;
+      &lt;IdentificationString&gt;Carga Fato 001.Outputs[OLE DB Source Output].Columns[COD_CLIENTE]&lt;/IdentificationString&gt;
+      &lt;ColumnName&gt;COD_CLIENTE&lt;/ColumnName&gt;
+      &lt;KeyType&gt;BusinessKey&lt;/KeyType&gt;
+      &lt;ChangeType&gt;None&lt;/ChangeType&gt;
+    &lt;/InputColumnToDBColumn&gt;
+    &lt;InputColumnToDBColumn&gt;
+      &lt;IdentificationString&gt;Carga Fato 001.Outputs[OLE DB Source Output].Columns[COD_DIA]&lt;/IdentificationString&gt;
+      &lt;ColumnName&gt;COD_DIA&lt;/ColumnName&gt;
+      &lt;KeyType&gt;BusinessKey&lt;/KeyType&gt;
+      &lt;ChangeType&gt;None&lt;/ChangeType&gt;
+    &lt;/InputColumnToDBColumn&gt;
+    &lt;InputColumnToDBColumn&gt;
+      &lt;IdentificationString&gt;Carga Fato 001.Outputs[OLE DB Source Output].Columns[COD_FABRICA]&lt;/IdentificationString&gt;
+      &lt;ColumnName&gt;COD_FABRICA&lt;/ColumnName&gt;
+      &lt;KeyType&gt;BusinessKey&lt;/KeyType&gt;
+      &lt;ChangeType&gt;None&lt;/ChangeType&gt;
+    &lt;/InputColumnToDBColumn&gt;
+    &lt;InputColumnToDBColumn&gt;
+      &lt;IdentificationString&gt;Carga Fato 001.Outputs[OLE DB Source Output].Columns[COD_ORGANIZACIONAL]&lt;/IdentificationString&gt;
+      &lt;ColumnName&gt;COD_ORGANIZACIONAL&lt;/ColumnName&gt;
+      &lt;KeyType&gt;BusinessKey&lt;/KeyType&gt;
+      &lt;ChangeType&gt;None&lt;/ChangeType&gt;
+    &lt;/InputColumnToDBColumn&gt;
+    &lt;InputColumnToDBColumn&gt;
+      &lt;IdentificationString&gt;Carga Fato 001.Outputs[OLE DB Source Output].Columns[COD_PRODUTO]&lt;/IdentificationString&gt;
+      &lt;ColumnName&gt;COD_PRODUTO&lt;/ColumnName&gt;
+      &lt;KeyType&gt;BusinessKey&lt;/KeyType&gt;
+      &lt;ChangeType&gt;None&lt;/ChangeType&gt;
+    &lt;/InputColumnToDBColumn&gt;
+    &lt;InputColumnToDBColumn&gt;
+      &lt;IdentificationString&gt;Carga Fato 001.Outputs[OLE DB Source Output].Columns[CUSTO_VARIAVEL]&lt;/IdentificationString&gt;
+      &lt;ColumnName&gt;CUSTO_VARIAVEL&lt;/ColumnName&gt;
+      &lt;KeyType&gt;None&lt;/KeyType&gt;
+      &lt;ChangeType&gt;ChangingAttribute&lt;/ChangeType&gt;
+    &lt;/InputColumnToDBColumn&gt;
+    &lt;InputColumnToDBColumn&gt;
+      &lt;IdentificationString&gt;Carga Fato 001.Outputs[OLE DB Source Output].Columns[DATA_FATO]&lt;/IdentificationString&gt;
+      &lt;ColumnName&gt;DATA_FATO&lt;/ColumnName&gt;
+      &lt;KeyType&gt;None&lt;/KeyType&gt;
+      &lt;ChangeType&gt;ChangingAttribute&lt;/ChangeType&gt;
+    &lt;/InputColumnToDBColumn&gt;
+    &lt;InputColumnToDBColumn&gt;
+      &lt;IdentificationString&gt;Carga Fato 001.Outputs[OLE DB Source Output].Columns[FATURAMENTO]&lt;/IdentificationString&gt;
+      &lt;ColumnName&gt;FATURAMENTO&lt;/ColumnName&gt;
+      &lt;KeyType&gt;None&lt;/KeyType&gt;
+      &lt;ChangeType&gt;ChangingAttribute&lt;/ChangeType&gt;
+    &lt;/InputColumnToDBColumn&gt;
+    &lt;InputColumnToDBColumn&gt;
+      &lt;IdentificationString&gt;Carga Fato 001.Outputs[OLE DB Source Output].Columns[IMPOSTO]&lt;/IdentificationString&gt;
+      &lt;ColumnName&gt;IMPOSTO&lt;/ColumnName&gt;
+      &lt;KeyType&gt;None&lt;/KeyType&gt;
+      &lt;ChangeType&gt;ChangingAttribute&lt;/ChangeType&gt;
+    &lt;/InputColumnToDBColumn&gt;
+    &lt;InputColumnToDBColumn&gt;
+      &lt;IdentificationString&gt;Carga Fato 001.Outputs[OLE DB Source Output].Columns[QUANTIDADE_VENDIDA]&lt;/IdentificationString&gt;
+      &lt;ColumnName&gt;QUANTIDADE_VENDIDA&lt;/ColumnName&gt;
+      &lt;KeyType&gt;None&lt;/KeyType&gt;
+      &lt;ChangeType&gt;ChangingAttribute&lt;/ChangeType&gt;
+    &lt;/InputColumnToDBColumn&gt;
+    &lt;InputColumnToDBColumn&gt;
+      &lt;IdentificationString&gt;Carga Fato 001.Outputs[OLE DB Source Output].Columns[UNIDADE_VENDIDA]&lt;/IdentificationString&gt;
+      &lt;ColumnName&gt;UNIDADE_VENDIDA&lt;/ColumnName&gt;
+      &lt;KeyType&gt;None&lt;/KeyType&gt;
+      &lt;ChangeType&gt;ChangingAttribute&lt;/ChangeType&gt;
+    &lt;/InputColumnToDBColumn&gt;
+  &lt;/InputToColumnsCollection&gt;
+  &lt;GeneratedComponentsIdentificationStrings&gt;
+    &lt;anyType xsi:type="xsd:string"&gt;Insert Destination&lt;/anyType&gt;
+    &lt;anyType xsi:type="xsd:string"&gt;OLE DB Command&lt;/anyType&gt;
+    &lt;anyType xsi:type="xsd:string"&gt;OLE DB Command 1&lt;/anyType&gt;
+  &lt;/GeneratedComponentsIdentificationStrings&gt;
+  &lt;FailFixedAttribute&gt;false&lt;/FailFixedAttribute&gt;
+  &lt;FailChangeAttribute&gt;false&lt;/FailChangeAttribute&gt;
+  &lt;UseStartEndDate&gt;false&lt;/UseStartEndDate&gt;
+  &lt;CurrentIndicatorColumn /&gt;
+  &lt;InferredIndicatorColumn /&gt;
+  &lt;ValueCurrent /&gt;
+  &lt;ValueExpired /&gt;
+  &lt;StartDateColumn /&gt;
+  &lt;EndDateColumn /&gt;
+  &lt;DateVariable /&gt;
+  &lt;EnableInferredSupport&gt;true&lt;/EnableInferredSupport&gt;
+&lt;/SCDWizardMetadata&gt;</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

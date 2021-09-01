@@ -1,3 +1,22 @@
-SELECT'001' AS CODIGO, 'Fábrica Rio de Janeiro' AS DESCRITOR
-UNION
-SELECT'002' AS CODIGO, 'Fábrica São Paulo' AS DESCRITOR
+/****** Script for SelectTopNRows command from SSMS  ******/
+SELECT TOP (1000) [Cod_Dia]
+      ,[Data]
+      ,[Cod_Semana]
+      ,[Nome_Dia_Semana]
+      ,[Cod_Mes]
+      ,[Nome_Mes]
+      ,[Cod_Mes_Ano]
+      ,[Nome_Mes_Ano]
+      ,[Cod_Trimestre]
+      ,[Nome_Trimestre]
+      ,[Cod_Trimestre_Ano]
+      ,[Nome_Trimestre_Ano]
+      ,[Cod_Semestre]
+      ,[Nome_Semestre]
+      ,[Cod_Semestre_Ano]
+      ,[Nome_Semestre_Ano]
+      ,[Ano]
+      ,[Tipo_Dia]
+  FROM [DW_SUCOS].[dbo].[Dim_Tempo]
+  where ano = '2014' and
+  cod_mes >= 1 and cod_mes <= 12
